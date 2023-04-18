@@ -4,9 +4,9 @@ from rest_framework import status, permissions, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from .models import CustomUser
+from .models import *
 
-from .serializers import CustomUserSerializer
+from .serializers import *
 
 # Create your views here.
 class UserCreate(APIView):
@@ -26,3 +26,7 @@ class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+
+class ActivityViewSet(viewsets.ModelViewSet):
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer

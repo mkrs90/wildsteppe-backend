@@ -7,3 +7,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class Activity(models.Model):
+    name = models.CharField(max_length=50)
+
+    
