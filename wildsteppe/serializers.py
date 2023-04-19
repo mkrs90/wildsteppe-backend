@@ -11,7 +11,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomUser
-        fields = ('email', 'username', 'password', 'first_name', 'last_name')
+        fields = ('email', 'password', 'first_name', 'last_name')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -26,3 +26,8 @@ class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
         fields = ['id', 'name']
+
+class TrailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trail
+        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed']

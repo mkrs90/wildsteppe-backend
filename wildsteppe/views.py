@@ -30,3 +30,7 @@ class UserDetail(generics.RetrieveAPIView):
 class ActivityViewSet(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+class TrailViewSet(viewsets.ModelViewSet):
+    queryset = Trail.objects.all()
+    serializer_class = TrailSerializer
