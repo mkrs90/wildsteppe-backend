@@ -8,6 +8,8 @@ from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 router.register(r'activities', views.ActivityViewSet)
+router.register(r'trails', views.TrailViewSet)
+router.register(r'difficulty_level', views.DifficultyViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

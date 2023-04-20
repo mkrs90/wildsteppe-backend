@@ -30,3 +30,19 @@ class UserDetail(generics.RetrieveAPIView):
 class ActivityViewSet(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+class DifficultyViewSet(viewsets.ModelViewSet):
+    queryset = Difficulty.objects.all()
+    serializer_class = DifficultySerializer    
+
+class TrailViewSet(viewsets.ModelViewSet):
+    queryset = Trail.objects.all()
+    
+    def get_serializer_class(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            print("you did either a PUT, PATCH, POST, or DELETE")
+            return TrailWriteSerializer
+        print("You did a GET")
+        return TrailSerializer
+
+
