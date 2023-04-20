@@ -27,7 +27,20 @@ class ActivitySerializer(serializers.ModelSerializer):
         model = Activity
         fields = ['id', 'name']
 
-class TrailSerializer(serializers.ModelSerializer):
+class DifficultySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Difficulty
+        fields = ['id', 'name']
+
+class TrailWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trail
-        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed']
+        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty']
+
+
+class TrailSerializer(serializers.ModelSerializer):
+    difficulty = DifficultySerializer()
+    class Meta:
+        model = Trail
+        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty']
+

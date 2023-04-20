@@ -26,6 +26,9 @@ class CustomUser(AbstractUser):
 class Activity(models.Model):
     name = models.CharField(max_length=50)
 
+class Difficulty(models.Model):
+    name = models.CharField(max_length=50)
+
 class Trail(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
@@ -34,4 +37,9 @@ class Trail(models.Model):
     duration = models.IntegerField()
     image = models.URLField(null=True)
     pets_allowed = models.BooleanField()
+    difficulty = models.ForeignKey('Difficulty', on_delete=models.PROTECT, null=True)
+
+
+
+
     
