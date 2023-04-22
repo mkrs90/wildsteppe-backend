@@ -17,12 +17,6 @@ class CustomUser(AbstractUser):
         ordering = ["-date_joined"]
         db_table = "users"
 
-# class CustomUser(AbstractUser):
-#     birthday = models.DateField(null=True)
-
-#     def __str__(self):
-#         return self.username
-
 class Activity(models.Model):
     name = models.CharField(max_length=50)
 
@@ -38,7 +32,7 @@ class Trail(models.Model):
     image = models.URLField(null=True)
     pets_allowed = models.BooleanField()
     difficulty = models.ForeignKey('Difficulty', on_delete=models.PROTECT, null=True)
-
+    activities = models.ManyToManyField('Activity', help_text="Select Activity")
 
 
 
