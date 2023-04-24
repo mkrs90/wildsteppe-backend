@@ -40,9 +40,24 @@ class TrailViewSet(viewsets.ModelViewSet):
     
     def get_serializer_class(self):
         if self.action in ("create", "update", "partial_update", "destroy"):
-            print("you did either a PUT, PATCH, POST, or DELETE")
+            print("you did either a PUT, PATCH, POST, or DELETE on trails")
             return TrailWriteSerializer
-        print("You did a GET")
+        print("You did a GET on trails")
         return TrailSerializer
 
+class TrailSimplifiedViewSet(viewsets.ModelViewSet):
+    queryset = Trail.objects.all()
+    serializer_class = TrailSimplifiedSerializer 
 
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            print("you did either a PUT, PATCH, POST, or DELETE on comments")
+            return CommentWriteSerializer
+        print("You did a GET on comments")
+        return CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
