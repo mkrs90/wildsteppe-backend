@@ -23,6 +23,15 @@ class Activity(models.Model):
 class Difficulty(models.Model):
     name = models.CharField(max_length=50)
 
+class Comment(models.Model):
+    text = models.TextField(max_length=250)
+    stars = models.IntegerField(null=True)
+    date = models.DateTimeField()
+    created = models.TimeField(auto_now_add=True)
+    updated = models.TimeField(auto_now=True)
+    user = models.ForeignKey('CustomUser', on_delete=models.PROTECT)
+    trail = models.ForeignKey('Trail', on_delete=models.PROTECT)
+
 class Trail(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)

@@ -45,3 +45,20 @@ class TrailSerializer(serializers.ModelSerializer):
         model = Trail
         fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty', 'activities']
 
+class TrailSimplifiedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trail
+        fields = ['id', 'name']
+
+class CommentWriteSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), required=False)
+    class Meta:
+        model = Comment
+        fields = ['id', 'text', 'stars', 'date', 'created', 'updated', 'user', 'trail']
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer()
+    trail = TrailSimplifiedSerializer()
+    class Meta:
+        model = Comment
+        fields = ['id', 'text', 'stars', 'date', 'created', 'updated', 'user', 'trail']

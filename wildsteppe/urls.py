@@ -10,6 +10,7 @@ router = routers.DefaultRouter()
 router.register(r'activities', views.ActivityViewSet)
 router.register(r'trails', views.TrailViewSet)
 router.register(r'difficulty_level', views.DifficultyViewSet)
+router.register(r'comments', views.CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
