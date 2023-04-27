@@ -42,6 +42,8 @@ class Trail(models.Model):
     pets_allowed = models.BooleanField()
     difficulty = models.ForeignKey('Difficulty', on_delete=models.PROTECT, null=True)
     activities = models.ManyToManyField('Activity', help_text="Select Activity")
+    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(null=True)
 
 
 

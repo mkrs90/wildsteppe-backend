@@ -6,7 +6,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True
     )
-    # username = serializers.CharField()
+    
     password = serializers.CharField(min_length=8, write_only=True)
     
     class Meta:
@@ -16,7 +16,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)  # as long as the fields are the same, we can just use this
+        instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
         instance.save()
@@ -35,7 +35,7 @@ class DifficultySerializer(serializers.ModelSerializer):
 class TrailWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trail
-        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty', 'activities']
+        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty', 'activities', 'longitude', 'latitude']
 
 
 class TrailSerializer(serializers.ModelSerializer):
@@ -43,7 +43,7 @@ class TrailSerializer(serializers.ModelSerializer):
     difficulty = DifficultySerializer()
     class Meta:
         model = Trail
-        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty', 'activities']
+        fields = ['id', 'name', 'location', 'description', 'distance', 'duration', 'image', 'pets_allowed', 'difficulty', 'activities', 'longitude', 'latitude']
 
 class TrailSimplifiedSerializer(serializers.ModelSerializer):
     class Meta:
