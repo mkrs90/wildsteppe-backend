@@ -1,0 +1,46 @@
+[
+    {
+      "id": 1,
+      "name": "Hiking"
+    },
+    {
+      "id": 2,
+      "name": "Mountain Biking"
+    },
+    {
+      "id": 3,
+      "name": "Walking"
+    },
+    {
+      "id": 4,
+      "name": "Road Biking"
+    },
+    {
+      "id": 5,
+      "name": "Running"
+    },
+    {
+      "id": 6,
+      "name": "Camping"
+    },
+    {
+      "id": 8,
+      "name": "Paddle Sports"
+    },
+    {
+      "id": 9,
+      "name": "Fishing"
+    },
+    {
+      "id": 10,
+      "name": "Rock climbing"
+    },
+    {
+      "id": 11,
+      "name": "Picnicking"
+    },
+    {
+      "id": 7,
+      "name": "Birdwatching"
+    }
+  ]
