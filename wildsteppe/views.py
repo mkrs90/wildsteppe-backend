@@ -8,7 +8,6 @@ from .models import *
 
 from .serializers import *
 
-# Create your views here.
 class UserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
