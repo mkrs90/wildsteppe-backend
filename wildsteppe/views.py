@@ -8,7 +8,6 @@ from .models import *
 
 from .serializers import *
 
-# Create your views here.
 class UserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
@@ -30,3 +29,34 @@ class UserDetail(generics.RetrieveAPIView):
 class ActivityViewSet(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+class DifficultyViewSet(viewsets.ModelViewSet):
+    queryset = Difficulty.objects.all()
+    serializer_class = DifficultySerializer    
+
+class TrailViewSet(viewsets.ModelViewSet):
+    queryset = Trail.objects.all()
+    
+    def get_serializer_class(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            print("you did either a PUT, PATCH, POST, or DELETE on trails")
+            return TrailWriteSerializer
+        print("You did a GET on trails")
+        return TrailSerializer
+
+class TrailSimplifiedViewSet(viewsets.ModelViewSet):
+    queryset = Trail.objects.all()
+    serializer_class = TrailSimplifiedSerializer 
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            print("you did either a PUT, PATCH, POST, or DELETE on comments")
+            return CommentWriteSerializer
+        print("You did a GET on comments")
+        return CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
